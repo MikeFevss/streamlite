@@ -144,19 +144,20 @@ for row_start in range(0, num_boards, boards_per_row):
                 row_html += f'''
                 <div style="
                     display:inline-block;
-                    width:100px; 
+                    width:80px; 
                     height:50px; 
                     border:1px solid #000;
                     background-color:{color};
                     color:black;
                     text-align:center;
                     vertical-align:middle;
-                    padding:3px;
-                    font-size:12px;
+                    padding:2px;
+                    font-size:11px;
                     overflow:hidden;
                 ">{cell}</div>
                 '''
             col.markdown(row_html, unsafe_allow_html=True)
+
 
 
 
