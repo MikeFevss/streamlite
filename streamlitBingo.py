@@ -85,12 +85,35 @@ for a in lista_acontecimentos:
 with open(STATE_FILE, "w", encoding="utf-8") as f:
     json.dump(marked_state, f, ensure_ascii=False, indent=2)
 
-# ---------------- DISPLAY BOARDS ----------------
+# ---------------- COMPUTE STATUS ----------------
 winners = []
 near_winners = []
 
+for idx, board in enumerate(pre_generated_boards):
+    board_lines = get_winning_lines(board)
+    for line in board_lines:
+        line_items = {board[r][c] for r, c in line}
+        if line_items.issubset(marked_set):
+            winners.append((idx, line))
+        elif len(line_items - marked_set) == 1:
+            near_winners.append((idx, line, line_items - marked_set))
+
+status_text = ""
+if winners:
+    status_text += "🎉 Vencedores: " + ", ".join(lista_pessoas[idx % len(lista_pessoas)] for idx, _ in winners) + "\n"
+if near_winners:
+    status_text += "⚠️ Quase bingo: " + ", ".join(
+        f"{lista_pessoas[idx % len(lista_pessoas)]} ({list(missing)[0]})" for idx, _, missing in near_winners
+    )
+if not status_text:
+    status_text = "❌ Ainda não há vencedores."
+
+# ---------------- SHOW STATUS AT THE TOP ----------------
+st.markdown(f"### {status_text}")
+
+# ---------------- DISPLAY BOARDS ----------------
 num_boards = len(pre_generated_boards)
-boards_per_row = 2  # max 5 boards per row
+boards_per_row = 2  # max 2 boards per row
 
 for row_start in range(0, num_boards, boards_per_row):
     row_cols = st.columns(boards_per_row)
@@ -101,29 +124,12 @@ for row_start in range(0, num_boards, boards_per_row):
         board_lines = get_winning_lines(board)
         winning_coords = []
 
-        # Detect winners and near-winners
+        # Detect winners again for coloring
         for line in board_lines:
             line_items = {board[r][c] for r, c in line}
             if line_items.issubset(marked_set):
-                winners.append((idx, line))
                 winning_coords.extend(list(line))
-            elif len(line_items - marked_set) == 1:
-                near_winners.append((idx, line, line_items - marked_set))
 
-        # ---------------- STATUS BAR ----------------
-        status_text = ""
-        if winners:
-            status_text += "🎉 Vencedores: " + ", ".join(lista_pessoas[idx % len(lista_pessoas)] for idx, _ in winners) + "\n"
-        if near_winners:
-            status_text += "⚠️ Quase bingo: " + ", ".join(
-                f"{lista_pessoas[idx % len(lista_pessoas)]} ({list(missing)[0]})" for idx, _, missing in near_winners
-            )
-        if not status_text:
-            status_text = "❌ Ainda não há vencedores."
-        
-        st.markdown(f"### {status_text}")
-        
-        
         # Render board as 5x5 grid
         for r in range(GRID_SIZE):
             row_html = ""
@@ -137,13 +143,3 @@ for row_start in range(0, num_boards, boards_per_row):
                     color = "#ffffff"  # white
                 row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};color:black;text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
             col.markdown(row_html, unsafe_allow_html=True)
-
-
-
-
-
-
-
-
-
-
