@@ -37,7 +37,7 @@ lista_pessoas = ['Miguel', 'Rita', 'Catarina', 'Bia', 'Daniela', 'Duarte', 'Elzo
 
 # ---------------- FILES ----------------
 STATE_FILE = "check.json"
-BOARDS_FILE = "pre_generated.json"
+BOARDS_FILE = "pre_generated_boards.json"
 
 # Load existing checkbox state
 if os.path.exists(STATE_FILE):
@@ -137,6 +137,7 @@ if not status_text:
     status_text = "❌ Ainda não há vencedores."
 
 st.markdown(f"### {status_text}")
+
 
 
 
