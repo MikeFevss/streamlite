@@ -110,6 +110,20 @@ for row_start in range(0, num_boards, boards_per_row):
             elif len(line_items - marked_set) == 1:
                 near_winners.append((idx, line, line_items - marked_set))
 
+        # ---------------- STATUS BAR ----------------
+        status_text = ""
+        if winners:
+            status_text += "🎉 Vencedores: " + ", ".join(lista_pessoas[idx % len(lista_pessoas)] for idx, _ in winners) + "\n"
+        if near_winners:
+            status_text += "⚠️ Quase bingo: " + ", ".join(
+                f"{lista_pessoas[idx % len(lista_pessoas)]} ({list(missing)[0]})" for idx, _, missing in near_winners
+            )
+        if not status_text:
+            status_text = "❌ Ainda não há vencedores."
+        
+        st.markdown(f"### {status_text}")
+        
+        
         # Render board as 5x5 grid
         for r in range(GRID_SIZE):
             row_html = ""
@@ -125,18 +139,8 @@ for row_start in range(0, num_boards, boards_per_row):
             col.markdown(row_html, unsafe_allow_html=True)
 
 
-# ---------------- STATUS BAR ----------------
-status_text = ""
-if winners:
-    status_text += "🎉 Vencedores: " + ", ".join(lista_pessoas[idx % len(lista_pessoas)] for idx, _ in winners) + "\n"
-if near_winners:
-    status_text += "⚠️ Quase bingo: " + ", ".join(
-        f"{lista_pessoas[idx % len(lista_pessoas)]} ({list(missing)[0]})" for idx, _, missing in near_winners
-    )
-if not status_text:
-    status_text = "❌ Ainda não há vencedores."
 
-st.markdown(f"### {status_text}")
+
 
 
 
