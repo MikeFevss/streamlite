@@ -68,7 +68,7 @@ def get_winning_lines(board):
 
 # ---------------- STREAMLIT DASHBOARD ----------------
 st.set_page_config(page_title="Bingo Dashboard", layout="wide")
-st.title("🎉 Bingo Dashboard – Acontecimentos 🎉")
+st.title("🎉 Bingo Dashboard – Acontecimentos 2026 🎉")
 
 # ---------------- SIDEBAR CHECKBOXES ----------------
 st.sidebar.header("Marque os acontecimentos")
@@ -132,4 +132,5 @@ if not status_text:
     status_text = "❌ Ainda não há vencedores."
 
 st.markdown(f"### {status_text}")
+
 
