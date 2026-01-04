@@ -92,12 +92,13 @@ st.markdown("""
     justify-content: center;
 }
 .status-box {
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    background: #f4f6f8;
+    padding: 14px;
+    border-radius: 10px;
+    margin-bottom: 24px;
+    background: #f8f9fa;
     font-size: 16px;
-    color: #000000;
+    color: #111;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 </style>
 """, unsafe_allow_html=True)
@@ -178,4 +179,5 @@ for row_start in range(0, len(pre_generated_boards), boards_per_row):
         html += "</div>"
 
         col.markdown(html, unsafe_allow_html=True)
+
 
