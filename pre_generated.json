@@ -5,33 +5,7 @@
         ["Miguel conhece alguém", "Miguel compra porta talheres", "Daniela arranja trabalho remunerado", "As raparigas vão de férias (pelo menos uma noite)", "Fábio tem um incidente com a polícia"],
         ["Alguém aparece na televisão", ">= 5 pessoas do grupo nas cegonhas(excl Rita)", "Grupo junta se todo num dia", "Gustavo com barba completa", "Daniela corre a meia maratona"],
         ["Núria acaba mestrado", "Elzo é pai", "Rita vai à fisioterapia", "Fábio perde um voo", "Bia aperta mão ao Trump"]
-    ],
-    [
-        ["Daniela corre a meia maratona", "Daniela arranja trabalho remunerado", "Bia manda algo pra trás no casamento", ">= 5 pessoas do grupo nas cegonhas(excl Rita)", "Fábio tem um incidente com a polícia"],
-        ["Gustavo compra consola", "Miguel muda de emprego", "Rita vai à fisioterapia", "Miguel conhece alguém", "Elzo chega depois da Núria ao casamento"],
-        ["Alguém aparece na televisão", "Catarina escolhe tema pra tese", "Gustavo com barba completa", "Fábio perde um voo", "As raparigas vão de férias (pelo menos uma noite)"],
-        ["Elzo é pai", "Núria acaba mestrado", "Grupo junta se todo num dia", "Catarina compra uma câmera", "Bia aperta mão ao Trump"],
-        ["Núria suja o vestido de casamento", "Gustavo entra na ordem", "Miguel compra porta talheres", "Elzo aparece + do que 2 vezes", "Rita dá mais do que 5 faltas disciplinares"]
-    ],
-    [
-        ["Núria acaba mestrado", "Miguel conhece alguém", "Gustavo com barba completa", "Rita dá mais do que 5 faltas disciplinares", "Gustavo compra consola"],
-        ["Daniela corre a meia maratona", "Miguel compra porta talheres", "Elzo chega depois da Núria ao casamento", "Bia manda algo pra trás no casamento", "Catarina compra uma câmera"],
-        [">= 5 pessoas do grupo nas cegonhas(excl Rita)", "Grupo junta se todo num dia", "Elzo é pai", "Fábio perde um voo", "Bia aperta mão ao Trump"],
-        ["Gustavo entra na ordem", "Alguém aparece na televisão", "Daniela arranja trabalho remunerado", "Fábio tem um incidente com a polícia", "Elzo aparece + do que 2 vezes"],
-        ["Rita vai à fisioterapia", "Núria suja o vestido de casamento", "As raparigas vão de férias (pelo menos uma noite)", "Miguel muda de emprego", "Catarina escolhe tema pra tese"]
-    ],
-    [
-        ["Núria acaba mestrado", "Alguém aparece na televisão", ">= 5 pessoas do grupo nas cegonhas(excl Rita)", "Núria suja o vestido de casamento", "Grupo junta se todo num dia"],
-        ["Rita vai à fisioterapia", "Catarina compra uma câmera", "Fábio perde um voo", "Daniela corre a meia maratona", "Miguel muda de emprego"],
-        ["Rita dá mais do que 5 faltas disciplinares", "Bia manda algo pra trás no casamento", "Gustavo compra consola", "Elzo é pai", "Daniela arranja trabalho remunerado"],
-        ["As raparigas vão de férias (pelo menos uma noite)", "Gustavo entra na ordem", "Miguel compra porta talheres", "Bia aperta mão ao Trump", "Catarina escolhe tema pra tese"],
-        ["Elzo aparece + do que 2 vezes", "Elzo chega depois da Núria ao casamento", "Miguel conhece alguém", "Gustavo com barba completa", "Fábio tem um incidente com a polícia"]
-    ],
-    [
-        ["Daniela corre a meia maratona", "Grupo junta se todo num dia", "Núria acaba mestrado", "Bia manda algo pra trás no casamento", "Miguel conhece alguém"],
-        ["Miguel compra porta talheres", "Rita vai à fisioterapia", "Alguém aparece na televisão", "Catarina escolhe tema pra tese", "Bia aperta mão ao Trump"],
-        ["Rita dá mais do que 5 faltas disciplinares", "Catarina compra uma câmera", "As raparigas vão de férias (pelo menos uma noite)", "Elzo é pai", "Gustavo compra consola"],
-        ["Elzo chega depois da Núria ao casamento", "Fábio tem um incidente com a polícia", "Gustavo entra na ordem", "Daniela arranja trabalho remunerado", ">= 5 pessoas do grupo nas cegonhas(excl Rita)"],
-        ["Miguel muda de emprego", "Elzo aparece + do que 2 vezes", "Fábio perde um voo", "Gustavo com barba completa", "Núria suja o vestido de casamento"]
     ]
+    
 ]
+
