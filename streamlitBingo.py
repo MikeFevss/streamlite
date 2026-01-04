@@ -56,7 +56,6 @@ else:
 
 # ---------------- FUNCTIONS ----------------
 def get_winning_lines(board):
-    """Returns all winning lines as sets of coordinates"""
     lines = []
     # Rows
     for r in range(GRID_SIZE):
@@ -65,8 +64,8 @@ def get_winning_lines(board):
     for c in range(GRID_SIZE):
         lines.append({(r, c) for r in range(GRID_SIZE)})
     # Diagonals
-    lines.append({(i, i) for i in range(GRID_SIZE)})           # diagonal ↘
-    lines.append({(i, GRID_SIZE-1-i) for i in range(GRID_SIZE)})  # diagonal ↙
+    lines.append({(i, i) for i in range(GRID_SIZE)})
+    lines.append({(i, GRID_SIZE-1-i) for i in range(GRID_SIZE)})
     return lines
 
 # ---------------- STREAMLIT DASHBOARD ----------------
@@ -91,11 +90,11 @@ winners = []
 near_winners = []
 
 num_boards = len(pre_generated_boards)
-cols_per_row = min(num_boards, 5)
+boards_per_row = 5  # max 5 boards per row
 
-for row_start in range(0, num_boards, cols_per_row):
-    row_cols = st.columns(cols_per_row)
-    for i, idx in enumerate(range(row_start, min(row_start+cols_per_row, num_boards))):
+for row_start in range(0, num_boards, boards_per_row):
+    row_cols = st.columns(boards_per_row)
+    for i, idx in enumerate(range(row_start, min(row_start + boards_per_row, num_boards))):
         board = pre_generated_boards[idx]
         col = row_cols[i]
         col.subheader(lista_pessoas[idx % len(lista_pessoas)])
@@ -111,7 +110,7 @@ for row_start in range(0, num_boards, cols_per_row):
             elif len(line_items - marked_set) == 1:
                 near_winners.append((idx, line, line_items - marked_set))
 
-        # Render board squares as proper 5x5 grid
+        # Render board as 5x5 grid
         for r in range(GRID_SIZE):
             row_html = ""
             for c in range(GRID_SIZE):
