@@ -97,6 +97,7 @@ st.markdown("""
     margin-bottom: 20px;
     background: #f4f6f8;
     font-size: 16px;
+    color: #000000;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -177,3 +178,4 @@ for row_start in range(0, len(pre_generated_boards), boards_per_row):
         html += "</div>"
 
         col.markdown(html, unsafe_allow_html=True)
+
