@@ -152,11 +152,12 @@ for row_start in range(0, num_boards, boards_per_row):
                     text-align:center;
                     vertical-align:middle;
                     padding:1px;
-                    font-size:8px;
+                    font-size:10px;
                     overflow:hidden;
                 ">{cell}</div>
                 '''
             col.markdown(row_html, unsafe_allow_html=True)
+
 
 
 
