@@ -144,7 +144,7 @@ for row_start in range(0, num_boards, boards_per_row):
                 row_html += f'''
                 <div style="
                     display:inline-block;
-                    width:75px; 
+                    width:65px; 
                     height:50px; 
                     border:1px solid #000;
                     background-color:{color};
@@ -152,11 +152,12 @@ for row_start in range(0, num_boards, boards_per_row):
                     text-align:center;
                     vertical-align:middle;
                     padding:1px;
-                    font-size:9px;
+                    font-size:8px;
                     overflow:hidden;
                 ">{cell}</div>
                 '''
             col.markdown(row_html, unsafe_allow_html=True)
+
 
 
 
