@@ -58,10 +58,13 @@ else:
 def get_winning_lines(board):
     """Returns all winning lines as sets of coordinates"""
     lines = []
+    # Rows
     for r in range(GRID_SIZE):
         lines.append({(r, c) for c in range(GRID_SIZE)})
+    # Columns
     for c in range(GRID_SIZE):
         lines.append({(r, c) for r in range(GRID_SIZE)})
+    # Diagonals
     lines.append({(i, i) for i in range(GRID_SIZE)})           # diagonal ↘
     lines.append({(i, GRID_SIZE-1-i) for i in range(GRID_SIZE)})  # diagonal ↙
     return lines
@@ -89,36 +92,38 @@ near_winners = []
 
 num_boards = len(pre_generated_boards)
 cols_per_row = min(num_boards, 5)
-cols = st.columns(cols_per_row)
 
-for idx, board in enumerate(pre_generated_boards):
-    col = cols[idx % cols_per_row]
-    col.subheader(lista_pessoas[idx % len(lista_pessoas)])
-    board_lines = get_winning_lines(board)
-    winning_coords = []
+for row_start in range(0, num_boards, cols_per_row):
+    row_cols = st.columns(cols_per_row)
+    for i, idx in enumerate(range(row_start, min(row_start+cols_per_row, num_boards))):
+        board = pre_generated_boards[idx]
+        col = row_cols[i]
+        col.subheader(lista_pessoas[idx % len(lista_pessoas)])
+        board_lines = get_winning_lines(board)
+        winning_coords = []
 
-    # Detect winners and near-winners
-    for line in board_lines:
-        line_items = {board[r][c] for r, c in line}
-        if line_items.issubset(marked_set):
-            winners.append((idx, line))
-            winning_coords.extend(list(line))
-        elif len(line_items - marked_set) == 1:
-            near_winners.append((idx, line, line_items - marked_set))
+        # Detect winners and near-winners
+        for line in board_lines:
+            line_items = {board[r][c] for r, c in line}
+            if line_items.issubset(marked_set):
+                winners.append((idx, line))
+                winning_coords.extend(list(line))
+            elif len(line_items - marked_set) == 1:
+                near_winners.append((idx, line, line_items - marked_set))
 
-    # Render board squares
-    for r in range(GRID_SIZE):
-        row_html = ""
-        for c in range(GRID_SIZE):
-            cell = board[r][c]
-            if (r, c) in winning_coords:
-                color = "#ffd966"  # gold for winners
-            elif cell in marked_set:
-                color = "#b6f2b6"  # green for marked
-            else:
-                color = "#ffffff"  # white
-            row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
-        col.markdown(row_html, unsafe_allow_html=True)
+        # Render board squares as proper 5x5 grid
+        for r in range(GRID_SIZE):
+            row_html = ""
+            for c in range(GRID_SIZE):
+                cell = board[r][c]
+                if (r, c) in winning_coords:
+                    color = "#ffd966"  # gold for winners
+                elif cell in marked_set:
+                    color = "#b6f2b6"  # green for marked
+                else:
+                    color = "#ffffff"  # white
+                row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
+            col.markdown(row_html, unsafe_allow_html=True)
 
 # ---------------- STATUS BAR ----------------
 status_text = ""
@@ -132,5 +137,3 @@ if not status_text:
     status_text = "❌ Ainda não há vencedores."
 
 st.markdown(f"### {status_text}")
-
-
