@@ -90,7 +90,7 @@ winners = []
 near_winners = []
 
 num_boards = len(pre_generated_boards)
-boards_per_row = 3  # max 5 boards per row
+boards_per_row = 2  # max 5 boards per row
 
 for row_start in range(0, num_boards, boards_per_row):
     row_cols = st.columns(boards_per_row)
@@ -137,6 +137,7 @@ if not status_text:
     status_text = "❌ Ainda não há vencedores."
 
 st.markdown(f"### {status_text}")
+
 
 
 
