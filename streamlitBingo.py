@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 
 GRID_SIZE = 5
 
@@ -123,7 +123,7 @@ def get_winning_lines(board):
 
 # ---------------- STREAMLIT DASHBOARD ----------------
 st.set_page_config(page_title="Bingo Dashboard", layout="wide")
-st.title("🎉 Bingo Dashboard – Acontecimentos 🎉")
+st.title("🎉 Bingo Dashboard – Acontecimentos 2026 🎉")
 
 # Sidebar: happenings
 st.sidebar.header("Marque os acontecimentos")
