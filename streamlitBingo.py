@@ -90,7 +90,7 @@ winners = []
 near_winners = []
 
 num_boards = len(pre_generated_boards)
-boards_per_row = 3  # max 5 boards per row
+boards_per_row = 5  # max 5 boards per row
 
 for row_start in range(0, num_boards, boards_per_row):
     row_cols = st.columns(boards_per_row)
@@ -121,8 +121,9 @@ for row_start in range(0, num_boards, boards_per_row):
                     color = "#b6f2b6"  # green for marked
                 else:
                     color = "#ffffff"  # white
-                row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
+                row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};color:black;text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
             col.markdown(row_html, unsafe_allow_html=True)
+
 
 # ---------------- STATUS BAR ----------------
 status_text = ""
@@ -136,4 +137,5 @@ if not status_text:
     status_text = "❌ Ainda não há vencedores."
 
 st.markdown(f"### {status_text}")
+
 
