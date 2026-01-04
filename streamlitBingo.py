@@ -130,7 +130,7 @@ for row_start in range(0, num_boards, boards_per_row):
             if line_items.issubset(marked_set):
                 winning_coords.extend(list(line))
 
-        # Render board as 5x5 grid
+        # Render board as 5x5 grid (smaller boxes and text)
         for r in range(GRID_SIZE):
             row_html = ""
             for c in range(GRID_SIZE):
@@ -141,6 +141,22 @@ for row_start in range(0, num_boards, boards_per_row):
                     color = "#b6f2b6"  # green for marked
                 else:
                     color = "#ffffff"  # white
-                row_html += f'<div style="display:inline-block;width:140px;height:60px;border:1px solid #000;background-color:{color};color:black;text-align:center;vertical-align:middle;padding:5px;">{cell}</div>'
+                row_html += f'''
+                <div style="
+                    display:inline-block;
+                    width:100px; 
+                    height:50px; 
+                    border:1px solid #000;
+                    background-color:{color};
+                    color:black;
+                    text-align:center;
+                    vertical-align:middle;
+                    padding:3px;
+                    font-size:12px;
+                    overflow:hidden;
+                ">{cell}</div>
+                '''
             col.markdown(row_html, unsafe_allow_html=True)
+
+
 
