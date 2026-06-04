@@ -47,11 +47,22 @@ lista_pessoas = [
 BOARDS_FILE = "pre_generated_boards.json"
 
 # ---------------- LOAD STATE ----------------
-rows = (
-    supabase.table("bingo_state")
-    .select("*")
-    .execute()
-)
+try:
+    rows = (
+        supabase.table("bingo_state")
+        .select("*")
+        .execute()
+    )
+
+    marked_state = {
+        row["event"]: row["checked"]
+        for row in rows.data
+    }
+
+except Exception as e:
+    st.error(f"Supabase error: {e}")
+    st.stop()
+
 
 marked_state = {
     row["event"]: row["checked"]
@@ -133,17 +144,6 @@ for event, checked in marked_state.items():
         .eq("event", event)
         .execute()
     )
-
-if st.sidebar.button("💾 Guardar"):
-    for event, checked in marked_state.items():
-        (
-            supabase.table("bingo_state")
-            .update({"checked": checked})
-            .eq("event", event)
-            .execute()
-        )
-
-    st.sidebar.success("Saved")
 
 # ---------------- STATUS ----------------
 winners = []
