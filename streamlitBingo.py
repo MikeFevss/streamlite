@@ -139,9 +139,9 @@ for a in lista_acontecimentos:
 
 for event, checked in marked_state.items():
     (
-        supabase.table("bingo_state")
-        .update({"checked": checked})
-        .eq("event", event)
+        supabase.table("check")
+        .update({"check": checked})
+        .eq("acontecimento", event)
         .execute()
     )
 
