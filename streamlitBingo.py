@@ -2,6 +2,12 @@ import streamlit as st
 import json
 import os
 
+from supabase import create_client
+
+supabase = create_client(
+    st.secrets["SUPABASE_URL"],
+    st.secrets["SUPABASE_KEY"]
+)
 GRID_SIZE = 5
 
 # ---------------- DATA ----------------
@@ -38,15 +44,19 @@ lista_pessoas = [
     'Duarte', 'Elzo', 'Fábio', 'Gustavo', 'Núria'
 ]
 
-STATE_FILE = "check.json"
 BOARDS_FILE = "pre_generated_boards.json"
 
 # ---------------- LOAD STATE ----------------
-if os.path.exists(STATE_FILE):
-    with open(STATE_FILE, "r", encoding="utf-8") as f:
-        marked_state = json.load(f)
-else:
-    marked_state = {a: False for a in lista_acontecimentos}
+rows = (
+    supabase.table("bingo_state")
+    .select("*")
+    .execute()
+)
+
+marked_state = {
+    row["event"]: row["checked"]
+    for row in rows.data
+}
 
 if os.path.exists(BOARDS_FILE):
     with open(BOARDS_FILE, "r", encoding="utf-8") as f:
@@ -116,8 +126,24 @@ for a in lista_acontecimentos:
     if checked:
         marked_set.add(a)
 
-with open(STATE_FILE, "w", encoding="utf-8") as f:
-    json.dump(marked_state, f, ensure_ascii=False, indent=2)
+for event, checked in marked_state.items():
+    (
+        supabase.table("bingo_state")
+        .update({"checked": checked})
+        .eq("event", event)
+        .execute()
+    )
+
+if st.sidebar.button("💾 Guardar"):
+    for event, checked in marked_state.items():
+        (
+            supabase.table("bingo_state")
+            .update({"checked": checked})
+            .eq("event", event)
+            .execute()
+        )
+
+    st.sidebar.success("Saved")
 
 # ---------------- STATUS ----------------
 winners = []
