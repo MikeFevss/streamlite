@@ -49,7 +49,7 @@ BOARDS_FILE = "pre_generated_boards.json"
 # ---------------- LOAD STATE ----------------
 try:
     rows = (
-        supabase.table("bingo_state")
+        supabase.table("check")
         .select("*")
         .execute()
     )
