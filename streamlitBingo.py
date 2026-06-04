@@ -65,7 +65,7 @@ except Exception as e:
 
 
 marked_state = {
-    row["event"]: row["checked"]
+    row["acontecimento"]: row["check"]
     for row in rows.data
 }
 
